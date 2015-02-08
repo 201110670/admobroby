@@ -10,6 +10,75 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
 	<!--====================================== bootstrap style END ==============================================-->
+	<script>
+    function onDocLoad() {
+        if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
+            document.addEventListener('deviceready', initApp, false);
+        } else {
+            initApp();
+        }
+    }
+    
+    function initApp() {
+        initAd();
+        // display the banner at startup
+        window.plugins.AdMob.createBannerView();
+    }
+    function initAd(){
+        if ( window.plugins && window.plugins.AdMob ) {
+    	    var ad_units = {
+				ios : {
+					banner: 'ca-app-pub-8723897361702554/8259726422',
+					interstitial: 'ca-app-pub-8723897361702554/5386985227'
+				},
+				android : {
+					banner: 'ca-app-pub-8723897361702554/8259726422',
+					interstitial: 'ca-app-pub-8723897361702554/5386985227'
+				},
+				wp8 : {
+					banner: 'ca-app-pub-8723897361702554/8259726422',
+					interstitial: 'ca-app-pub-8723897361702554/5386985227'
+				}
+    	    };
+    	    var admobid = "";
+    	    if( /(android)/i.test(navigator.userAgent) ) {
+    	    	admobid = ad_units.android;
+    	    } else if(/(iphone|ipad)/i.test(navigator.userAgent)) {
+    	    	admobid = ad_units.ios;
+    	    } else {
+    	    	admobid = ad_units.wp8;
+    	    }
+            window.plugins.AdMob.setOptions( {
+                publisherId: admobid.banner,
+                interstitialAdId: admobid.interstitial,
+                bannerAtTop: false, // set to true, to put banner at top
+                overlap: false, // set to true, to allow banner overlap webview
+                offsetTopBar: false, // set to true to avoid ios7 status bar overlap
+                isTesting: false, // receiving test ad
+                autoShow: true // auto show interstitial ad when loaded
+            });
+            registerAdEvents();
+            
+        } else {
+            alert( 'admob plugin not ready' );
+        }
+    }
+	// optional, in case respond to events
+    function registerAdEvents() {
+    	document.addEventListener('onReceiveAd', function(){});
+        document.addEventListener('onFailedToReceiveAd', function(data){});
+        document.addEventListener('onPresentAd', function(){});
+        document.addEventListener('onDismissAd', function(){ });
+        document.addEventListener('onLeaveToAd', function(){ });
+        document.addEventListener('onReceiveInterstitialAd', function(){ });
+        document.addEventListener('onPresentInterstitialAd', function(){ });
+        document.addEventListener('onDismissInterstitialAd', function(){ });
+    }
+    function onResize() {
+        var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
+        document.getElementById('sizeinfo').innerHTML = msg;
+    }
+    </script>
 	<style type="text/css">
 		*{
 			margin:0;
@@ -345,9 +414,21 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<!-- bootstrap scripts END -->
 </head>
-<body nload="onDocLoad()">
+<body nload="onDocLoad()" onresize="onResize()">
 	<!-- modal START-->
+	<div id="fullpage">
+    <p>Roby Ads Working</p>
+	<p>Gordon College CCS</p>
+    <p><button onclick="window.plugins.AdMob.createBannerView();">create Ad</button> <button onclick="window.plugins.AdMob.destroyBannerView();">remove Ad</button></p>
+    <p><button onclick="window.plugins.AdMob.showAd(true,function(){},function(e){alert(JSON.stringify(e));});">show Ad</button> <button onclick="window.plugins.AdMob.showAd(false);">hide Ad</button></p>
+    <p><button onclick="window.plugins.AdMob.createInterstitialView();">create Interstitial Ad</button></p>
+    <p><button onclick="window.plugins.AdMob.showInterstitialAd(true,function(){},function(e){alert(JSON.stringify(e));});">show Interstitial Ad</button></p>
+    <div id="sizeinfo">width * height</div>
+    <div>Try rotate screen to test the orientation change</div>
+
+    </div>
 	<div class="modal-container">
+	
 		<div class="modal" id="memorizeModal">
 			<div class="boxInside boxInside-0"><span class="boxNum boxNum-0"></span></div>
 			<div class="boxInside boxInside-1"><span class="boxNum boxNum-1"></span></div>
@@ -1113,73 +1194,4 @@ $(document).ready(function(){
 	}
 });
 </script>
-<script>
-    function onDocLoad() {
-        if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
-            document.addEventListener('deviceready', initApp, false);
-        } else {
-            initApp();
-        }
-    }
-    
-    function initApp() {
-        initAd();
-        // display the banner at startup
-        window.plugins.AdMob.createBannerView();
-    }
-    function initAd(){
-        if ( window.plugins && window.plugins.AdMob ) {
-    	    var ad_units = {
-				ios : {
-					banner: 'ca-app-pub-8723897361702554/8259726422',
-					interstitial: 'ca-app-pub-8723897361702554/5386985227'
-				},
-				android : {
-					banner: 'ca-app-pub-8723897361702554/8259726422',
-					interstitial: 'ca-app-pub-8723897361702554/5386985227'
-				},
-				wp8 : {
-					banner: 'ca-app-pub-8723897361702554/8259726422',
-					interstitial: 'ca-app-pub-8723897361702554/5386985227'
-				}
-    	    };
-    	    var admobid = "";
-    	    if( /(android)/i.test(navigator.userAgent) ) {
-    	    	admobid = ad_units.android;
-    	    } else if(/(iphone|ipad)/i.test(navigator.userAgent)) {
-    	    	admobid = ad_units.ios;
-    	    } else {
-    	    	admobid = ad_units.wp8;
-    	    }
-            window.plugins.AdMob.setOptions( {
-                publisherId: admobid.banner,
-                interstitialAdId: admobid.interstitial,
-                bannerAtTop: false, // set to true, to put banner at top
-                overlap: false, // set to true, to allow banner overlap webview
-                offsetTopBar: false, // set to true to avoid ios7 status bar overlap
-                isTesting: false, // receiving test ad
-                autoShow: true // auto show interstitial ad when loaded
-            });
-            registerAdEvents();
-            
-        } else {
-            alert( 'admob plugin not ready' );
-        }
-    }
-	// optional, in case respond to events
-    function registerAdEvents() {
-    	document.addEventListener('onReceiveAd', function(){});
-        document.addEventListener('onFailedToReceiveAd', function(data){});
-        document.addEventListener('onPresentAd', function(){});
-        document.addEventListener('onDismissAd', function(){ });
-        document.addEventListener('onLeaveToAd', function(){ });
-        document.addEventListener('onReceiveInterstitialAd', function(){ });
-        document.addEventListener('onPresentInterstitialAd', function(){ });
-        document.addEventListener('onDismissInterstitialAd', function(){ });
-    }
-    function onResize() {
-        var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
-        document.getElementById('sizeinfo').innerHTML = msg;
-    }
-    </script>
 </html>
