@@ -1,56 +1,41 @@
-<?xml version   ="1.0" encoding="UTF-8" ?>
-<widget xmlns   = "http://www.w3.org/ns/widgets"
-    xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "org.gcccs.robyads"
-    version     = "1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.pmaw.alamath"  version = "3.2.0" versionCode = "32" >
 
+        <name>ROBY v3.9</name>
+        <description>ROBY Game</description>
+        <author>BUKOD TANGI</author>
+		<gap:platforms>
+                <gap:platform name="ios" />
+                <gap:platform name="android" />
+                <gap:platform name="webos" />
+                <gap:platform name="symbian.wrt" />
+                <gap:platform name="blackberry" project="widgets"/>
+				
+        </gap:platforms>
+		 <preference name="phonegap-version"   value="3.5.0" />         
+		<preference name="target-device"              value="universal" /> 
+		<feature name="http://api.phonegap.com/1.0/device"/>
+		<feature name="http://api.phonegap.com/1.0/media" /> 
+				
+        <access origin="*" subdomains="true" />
+        <access uri="*" subdomains="true" />
+                 <access uri="*" subdomains="true" />
+        <feature name="http://api.phonegap.com/1.0/network"/>
+        <feature name="InAppBrowser">
+		
+		<param name="android-package" value="org.apache.cordova.InAppBrowser" />
 
-    <name>ROBY Ads</name>
-    
-    <content src="index.html"/>
-    <icon src="icon.png" width="256" height="256" />
-    
-    <description>Sosmnl
-    </description>
-    
-   
+        </feature>
+		<feature name="Media">
+			<param name="android-package" value="org.apache.cordova.media.AudioHandler" />
+		</feature>
+       <gap:plugin name="org.apache.cordova.media" />
+		<gap:plugin name="org.apache.cordova.core.Device"/>
+		<gap:plugin name="com.rjfun.cordova.plugin.admob" source="plugins.cordova.io" />
+        
+        <preference name="orientation" value="portrait" />
+        <preference name="fullscreen" value="true" />
+        <preference name="target-device" value="universal" />
 
-    <!-- third party plugins -->
-    <gap:plugin name="org.apache.cordova.statusbar"/>
-
-    <!-- core plugins -->
-    <gap:plugin name="org.apache.cordova.battery-status" />
-    <gap:plugin name="org.apache.cordova.camera" />
-    <gap:plugin name="org.apache.cordova.media-capture" />
-    <gap:plugin name="org.apache.cordova.console" />
-    <gap:plugin name="org.apache.cordova.contacts" />
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.device-motion" />
-    <gap:plugin name="org.apache.cordova.device-orientation" />
-    <gap:plugin name="org.apache.cordova.file" />
-    <gap:plugin name="org.apache.cordova.file-transfer" />
-    <gap:plugin name="org.apache.cordova.geolocation" />
-    <gap:plugin name="org.apache.cordova.globalization" />
-    <gap:plugin name="org.apache.cordova.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.media" />
-    <gap:plugin name="org.apache.cordova.dialogs" />
-    <gap:plugin name="org.apache.cordova.vibration" />
-	<gap:plugin name="nl.x-services.plugins.toast" />
-	<!--<gap:plugin name="com.admob.plugin" source="plugins.cordova.io"/>-->
-	<gap:plugin name="com.rjfun.cordova.plugin.admob" source="plugins.cordova.io" />
- 
-	<feature name="http://api.phonegap.com/1.0/geolocation"/>
- 
- 
- <plugin name="PushNotification" value="com.pushwoosh.test.plugin.pushnotifications.PushNotifications" onload="true"/>
- 
-    <!-- universal preferences -->
-    <preference name="phonegap-version"   value="3.5.0" />         
-    <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
-    <!--<preference name="fullscreen"                 value="true" /> -->          <!-- all: hides the status bar at the top of the screen -->
-  
-   <preference name="fullscreen" value="false" />
-   <preference name="android-windowSoftInputMode" value="stateVisible" />
-   	<preference name="orientation" value="portrait" />
-    <!-- content src="http://www.w3.org/2010/05/video/mediaevents.html" / -->
 </widget>
+
