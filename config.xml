@@ -11,9 +11,9 @@
                 <gap:platform name="symbian.wrt" />
                 <gap:platform name="blackberry" project="widgets"/>
 				
-		<icon src="icon.png" width="256" height="256" />
         </gap:platforms>
-		<preference name="phonegap-version" value="3.6.3" />
+		 <preference name="phonegap-version"   value="3.5.0" />         
+		<preference name="target-device"              value="universal" /> 
 		<feature name="http://api.phonegap.com/1.0/device"/>
 		<feature name="http://api.phonegap.com/1.0/media" /> 
 				

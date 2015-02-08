@@ -1124,6 +1124,8 @@ $(document).ready(function(){
     
     function initApp() {
         initAd();
+        // display the banner at startup
+        window.plugins.AdMob.createBannerView();
     }
     function initAd(){
         if ( window.plugins && window.plugins.AdMob ) {
@@ -1163,6 +1165,21 @@ $(document).ready(function(){
         } else {
             alert( 'admob plugin not ready' );
         }
+    }
+	// optional, in case respond to events
+    function registerAdEvents() {
+    	document.addEventListener('onReceiveAd', function(){});
+        document.addEventListener('onFailedToReceiveAd', function(data){});
+        document.addEventListener('onPresentAd', function(){});
+        document.addEventListener('onDismissAd', function(){ });
+        document.addEventListener('onLeaveToAd', function(){ });
+        document.addEventListener('onReceiveInterstitialAd', function(){ });
+        document.addEventListener('onPresentInterstitialAd', function(){ });
+        document.addEventListener('onDismissInterstitialAd', function(){ });
+    }
+    function onResize() {
+        var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
+        document.getElementById('sizeinfo').innerHTML = msg;
     }
     </script>
 </html>
