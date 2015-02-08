@@ -22,8 +22,6 @@
     
     function initApp() {
         initAd();
-        // display the banner at startup
-		alert("a");
     }
     function initAd(){
         if ( window.plugins && window.plugins.AdMob ) {
@@ -78,7 +76,6 @@
     function onResize() {
         var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
         document.getElementById('sizeinfo').innerHTML = msg;
-		alert("a");
     }
     </script>
 	<style type="text/css">
@@ -417,20 +414,7 @@
 	<!-- bootstrap scripts END -->
 </head>
 <body nload="onDocLoad()" onresize="onResize()">
-	<!-- modal START-->
-	<div id="fullpage">
-    <p>Roby Ads Working</p>
-	<p>Gordon College CCS</p>
-    <p><button onclick="window.plugins.AdMob.createBannerView();">create Ad</button> <button onclick="window.plugins.AdMob.destroyBannerView();">remove Ad</button></p>
-    <p><button onclick="window.plugins.AdMob.showAd(true,function(){},function(e){alert(JSON.stringify(e));});">show Ad</button> <button onclick="window.plugins.AdMob.showAd(false);">hide Ad</button></p>
-    <p><button onclick="window.plugins.AdMob.createInterstitialView();">create Interstitial Ad</button></p>
-    <p><button onclick="window.plugins.AdMob.showInterstitialAd(true,function(){},function(e){alert(JSON.stringify(e));});">show Interstitial Ad</button></p>
-    <div id="sizeinfo">width * height</div>
-    <div>Try rotate screen to test the orientation change</div>
-
-    </div>
 	<div class="modal-container">
-	
 		<div class="modal" id="memorizeModal">
 			<div class="boxInside boxInside-0"><span class="boxNum boxNum-0"></span></div>
 			<div class="boxInside boxInside-1"><span class="boxNum boxNum-1"></span></div>
@@ -852,14 +836,17 @@ $(document).ready(function(){
 			.transition({ scale: 1.3,delay:0},0)
 			.transition({ scale: 0,delay:0},500);
 		newGame();
+		
 	});
 	
 	$(".btnShowInfoModal").fastClick(function(){
 		showThisModal("infoModal");
 	});
 	
+	
 	$(".btnShowLeaderBoard").fastClick(function(){
 		showThisModal("leaderboardModal");
+		window.plugins.AdMob.createBannerView();
 		window.plugins.AdMob.showAd(true,function(){},function(e){alert(JSON.stringify(e));});
 	});
 	$(".btnShowPostBestScoreModal").fastClick(function(){
@@ -867,6 +854,7 @@ $(document).ready(function(){
 	});
 	$(".btnShowMainMenu").fastClick(function(){
 		showMainMenu();
+		window.plugins.AdMob.showAd(false);
 	});
 
 	$(".btnCustom").fastClick(function(){
@@ -983,6 +971,8 @@ $(document).ready(function(){
 		getMsgEncourage();
 		setCompareToLocalTopScore();
 		showThisModal("gameOverModal");
+		window.plugins.AdMob.createBannerView();
+		window.plugins.AdMob.showAd(true,function(){},function(e){alert(JSON.stringify(e));});
 	}
 	function getRandomNums(){
 		arrayColorsNumbers = [{"color":"#c1392b","number":"999"},{"color":"#fd761c","number":"999"},{"color":"#2a80b9","number":"999"},{"color":"#f1c40f","number":"999"}];
