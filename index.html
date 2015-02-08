@@ -23,7 +23,6 @@
     function initApp() {
         initAd();
         // display the banner at startup
-        window.plugins.AdMob.createBannerView();
 		alert("a");
     }
     function initAd(){
@@ -592,7 +591,7 @@
 					<img src="img/info.png" class="img-thumbnail noBorder"  style="background:#93877B;padding:.5em" alt="" />
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding btnShowLeaderBoard"  style="background:#BBADA0;text-align:right;" onclick="window.plugins.AdMob.showAd(true,function(){},function(e){alert(JSON.stringify(e));});">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding btnShowLeaderBoard"  style="background:#BBADA0;text-align:right;" >
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 btnCustom" style="text-align:left;padding-top:.5em;">
 					<span>Leaderboard</span>
 				</div>
@@ -703,7 +702,7 @@ $(document).ready(function(){
 		function onStatus(status) {
 		}
 	$(".btnLeaderboard").fastClick(function(){
-		
+	
 		$(this)
 		//	.transition({ x: 20},50)
 		//	.transition({ x: -20 },50)
@@ -714,7 +713,9 @@ $(document).ready(function(){
 			.transition({ scale: 0.8},50)
 			.transition({ scale: 1.2},50)
 			.transition({ scale: 1},5000);
+			
 	});
+	
 	//alert($(window).height());
 	
 	$(".boxInside").css({"position":"absolute"});
@@ -859,6 +860,7 @@ $(document).ready(function(){
 	
 	$(".btnShowLeaderBoard").fastClick(function(){
 		showThisModal("leaderboardModal");
+		window.plugins.AdMob.showAd(true,function(){},function(e){alert(JSON.stringify(e));});
 	});
 	$(".btnShowPostBestScoreModal").fastClick(function(){
 		showThisModal("postBestScoreModal");
