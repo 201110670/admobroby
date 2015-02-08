@@ -23,6 +23,7 @@
         initAd();
         // display the banner at startup
         window.plugins.AdMob.createBannerView();
+		alert("a");
     }
     function initAd(){
         if ( window.plugins && window.plugins.AdMob ) {
@@ -77,6 +78,7 @@
     function onResize() {
         var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
         document.getElementById('sizeinfo').innerHTML = msg;
+		alert("a2");
     }
     </script>
 	<style type="text/css">
